@@ -36,8 +36,8 @@ public class LSPEndpointFactory {
 		// setup config and utils
 		engine = CFMLEngineFactory.getInstance();
 		log = LSPUtil.getLog(config);
-		port = engine.getCastUtil().toIntValue(Util._getSystemPropOrEnvVar("lucee.lsp.port", null), DEFAULT_LSP_PORT);
-		cfcPath = engine.getCastUtil().toString(Util._getSystemPropOrEnvVar("lucee.lsp.component", null), DEFAULT_COMPONENT);
+		port = engine.getCastUtil().toIntValue(LSPUtil.getSystemPropOrEnvVar("lucee.lsp.port", null), DEFAULT_LSP_PORT);
+		cfcPath = engine.getCastUtil().toString(LSPUtil.getSystemPropOrEnvVar("lucee.lsp.component", null), DEFAULT_COMPONENT);
 		if (Util.isEmpty(cfcPath, true)) cfcPath = DEFAULT_COMPONENT;
 
 		log.debug("lsp", "LSP server port: " + port);

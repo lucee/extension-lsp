@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import lucee.commons.io.log.Log;
 import lucee.loader.engine.CFMLEngine;
 import lucee.loader.engine.CFMLEngineFactory;
+import lucee.loader.util.Util;
 import lucee.runtime.PageContext;
 import lucee.runtime.config.Config;
 import lucee.runtime.config.ConfigServer;
@@ -53,6 +54,31 @@ public class LSPUtil {
 			return log;
 		}
 		return null;
+	}
+
+	public static String getSystemPropOrEnvVar(String name, String defaultValue) { // FUTURE remove _ or move to CFMLEngineFactory.getSystemPropOrEnvVar()
+
+		if (Util.isEmpty(name)) return defaultValue;
+
+		// env
+		String value = System.getenv(name);
+		if (!Util.isEmpty(value)) return value;
+
+		// prop
+		value = System.getProperty(name, null);
+		if (!Util.isEmpty(value)) return value;
+
+		// try to convert prop to env
+		String key = name.replace('.', '_').toUpperCase();
+		value = System.getenv(key);
+		if (!Util.isEmpty(value)) return value;
+
+		// try to convert env to prop
+		key = name.replace('_', '.').toLowerCase();
+		value = System.getProperty(key, null);
+		if (!Util.isEmpty(value)) return value;
+
+		return defaultValue;
 	}
 
 	public static PageContext createPageContext(final ConfigWeb cw) throws PageException {
