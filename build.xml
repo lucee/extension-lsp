@@ -93,18 +93,18 @@ lucee-core-version: "${luceeCoreVersion}"
       </manifest>
     </jar>
 
-    <!-- copy the flds necessary -->
-    <copy file="${fld}/function.fld" tofile="${dist}/extension/flds/ws-functions.fld" />
+    <!-- copy the flds necessary
+    <copy file="${fld}/function.fld" tofile="${dist}/extension/flds/lsp-functions.fld" />
     <replaceregexp 
-      file="${dist}/extension/flds/ws-functions.fld" 
+      file="${dist}/extension/flds/lsp-functions.fld" 
       match="\{bundle-name\}" 
       replace="${bundlename}" 
       byline="true"/>
     <replaceregexp 
-      file="${dist}/extension/flds/ws-functions.fld" 
+      file="${dist}/extension/flds/lsp-functions.fld" 
       match="\{bundle-version\}" 
       replace="${bundleversion}" 
-      byline="true"/>
+      byline="true"/> -->
 
 
 
