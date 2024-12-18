@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Export-Package: org.lucee.extension.lsp
+Bundle-ManifestVersion: 2
