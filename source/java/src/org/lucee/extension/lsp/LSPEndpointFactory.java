@@ -31,7 +31,6 @@ public class LSPEndpointFactory {
 	private String cfcPath;
 	private Log log;
 
-	// TODO shutdown when the Lucee engine does shut down
 	public LSPEndpointFactory(Config config) throws IOException {
 		// setup config and utils
 		engine = CFMLEngineFactory.getInstance();
@@ -161,7 +160,8 @@ public class LSPEndpointFactory {
 		}
 	}
 
-	public void shutdown() throws IOException {
+	@Override
+	public void finalize() throws IOException {
 		running = false;
 		if (executor != null) {
 			executor.shutdown();
