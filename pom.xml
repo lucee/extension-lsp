@@ -4,15 +4,18 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.lucee</groupId>
     <artifactId>lsp-extension</artifactId>
-    <version>0.0.0.0-SNAPSHOT</version>
+    <version>0.0.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Language Server Extension</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <id>EAF0AAF1-E068-4BA7-B72FF3D8E730696C</id>
+        <image>https://raw.githubusercontent.com/lucee/extension-lsp/master/source/images/logo.png</image>
+        <buildDate>${maven.build.timestamp}</buildDate>
         <bundlename>org.lucee.lsp.extension</bundlename>
         <class>org.lucee.extension.lsp.LSPEndpointFactory</class>
         <luceeCoreVersion>5.3.0.20</luceeCoreVersion>
@@ -118,6 +121,30 @@
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <flattenMode>bom</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Antrun plugin to execute the Ant build -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
